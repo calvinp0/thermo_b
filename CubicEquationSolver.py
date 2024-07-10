@@ -26,7 +26,41 @@ import numpy as np
 # Polynomial Structure -> ax^3 + bx^2 + cx + d = 0
 
 def solve(a, b, c, d):
+    """
+    Solves the cubic equation ax^3 + bx^2 + cx + d = 0 and returns its roots.
 
+    This function computes the roots of a cubic polynomial equation using a custom algorithm 
+    which is significantly faster than the standard numpy.roots() method. It can also handle 
+    special cases of linear and quadratic equations when the higher degree coefficients are zero.
+
+    Parameters:
+    a (float): Coefficient of x^3
+    b (float): Coefficient of x^2
+    c (float): Coefficient of x
+    d (float): Constant term
+
+    Returns:
+    numpy.ndarray: An array containing the roots of the polynomial. The roots can be real or complex numbers.
+
+    Notes:
+    - If both a and b are zero, the function treats the equation as a linear equation and returns the single root.
+    - If a is zero, the function treats the equation as a quadratic equation and returns its two roots.
+    - For cubic equations, it uses different methods depending on the discriminant:
+      - If f, g, and h are zero, all roots are real and equal.
+      - If h is less than or equal to zero, all three roots are real.
+      - If h is greater than zero, there is one real root and two complex conjugate roots.
+
+    Example Usage:
+    >>> solve(1, -6, 11, -6)
+    array([3., 2., 1.])
+
+    >>> solve(0, 1, -3, 2)
+    array([2., 1.])
+
+    >>> solve(0, 0, 1, -2)
+    array([2.])
+
+    """
     if (a == 0 and b == 0):                     # Case for handling Liner Equation
         return np.array([(-d * 1.0) / c])                 # Returning linear root as numpy array.
 
