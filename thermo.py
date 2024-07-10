@@ -73,7 +73,7 @@ def plot_peng_robinson_eos(peng_robinson_eos_df: pd.DataFrame) -> None:
 def plot_example_ideal_gas_law_and_peng_robinson_eos() -> None:
     """A function that plots the pressure of an ideal gas and a gas using the Peng-Robinson EOS at a given temperature and molar volume provided by an example DataFrame.
     """
-    example = pd.read_csv('src/preos_df_example.csv', index_col=0)
+    example = pd.read_csv('/content/thermo_b/preos_df_example.csv', index_col=0)
     plot_peng_robinson_eos(example)
     plt.axhline(y=4.6, color='red', linestyle='--', label='$P^{0}$ at 284.0 K (Lit)')
     plt.xlabel('Volume (m^3)')
