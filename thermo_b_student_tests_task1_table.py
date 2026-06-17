@@ -153,6 +153,27 @@ def _test_peng_robinson_pressure(ns: Mapping[str, Any]) -> None:
     _close(p_pr, p_ideal, rtol=1e-3, message="At very large molar volume, PR should approach ideal-gas behavior.")
     _require(np.isfinite(p_pr), "The PR pressure function returned a non-finite value.")
 
+def _test_peng_robinson_eos_table(ns: Mapping[str, Any]) -> None:
+    build_peng_robinson_eos_table = _callable(ns, "build_peng_robinson_eos_table")
+    peng_robinson_pressure = _callable(ns, "peng_robinson_pressure")
+
+    volumes = np.array([80.0, 120.0, 200.0])
+    temperatures = np.array([280.0, 304.1])
+    R = 8.314
+    Tc = 304.2
+    Pc = 7.38
+    omega = 0.225
+
+    table = build_peng_robinson_eos_table(R, volumes, temperatures, Tc, Pc, omega)
+
+    _require(isinstance(table, pd.DataFrame), "The Peng-Robinson EOS table should be a pandas DataFrame.")
+    _require(list(table.index) == list(volumes), "The EOS table rows should preserve the supplied molar volumes.")
+    _require(list(table.columns) == list(temperatures), "The EOS table columns should preserve the supplied temperatures.")
+
+    for T in temperatures:
+        expected = peng_robinson_pressure(T=T, V=volumes, Tc=Tc, Pc=Pc, omega=omega, R=R)
+        _array_close(table[T].to_numpy(dtype=float), expected, message="A Peng-Robinson table column does not match the pressure function.")
+
 
 def _test_calculate_A_B(ns: Mapping[str, Any]) -> None:
     calculate_A = _callable(ns, "calculate_A")
