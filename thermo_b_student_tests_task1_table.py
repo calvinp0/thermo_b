@@ -147,7 +147,7 @@ def _test_peng_robinson_pressure(ns: Mapping[str, Any]) -> None:
     Pc = 7.38
     omega = 0.225
     R = 8.314
-    V_large = 100_000
+    V_large = 1_000_000
     p_pr = peng_robinson_pressure(T, V_large, Tc, Pc, omega, R=R)
     p_ideal = R * T / V_large
     _close(p_pr, p_ideal, rtol=1e-3, message="At very large molar volume, PR should approach ideal-gas behavior.")
