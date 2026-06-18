@@ -101,12 +101,12 @@ def get_chemical_values(chemical_df: pd.DataFrame, molecules: List, column: str)
         return ValueError('No molecules were inputted. Please input a list of molecules.')
     elif not isinstance(molecules, list):
         raise TypeError('Molecules must be a list.')
-    elif [molecule in chemical_df['Element'].unique() for molecule in molecules] != [True, True]:
+    elif [molecule in chemical_df['Component'].unique() for molecule in molecules] != [True, True]:
         raise ValueError('Molecules not in DataFrame. Did you input the correct molecules?')
     elif chemical_df is None:
         raise ValueError('No DataFrame was inputted. Please input the required DataFrame.')
     else:
-        return chemical_df.loc[chemical_df['Element'].isin(molecules), column].values.tolist()
+        return chemical_df.loc[chemical_df['Component'].isin(molecules), column].values.tolist()
     
 
 # Calculate ai for Task 7.1.1

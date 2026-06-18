@@ -256,7 +256,7 @@ def _test_validate_mole_fractions(ns: Mapping[str, Any]) -> None:
 def _test_build_mixture_property_table(ns: Mapping[str, Any]) -> None:
     build_mixture_property_table = _callable(ns, "build_mixture_property_table")
     toy_df = pd.DataFrame({
-        "Element": ["A", "B"],
+        "Component": ["A", "B"],
         "Tc_K": [100.0, 200.0],
         "Pc_MPa": [1.0, 2.0],
         "w": [0.1, 0.2],
