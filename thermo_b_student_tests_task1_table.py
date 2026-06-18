@@ -284,7 +284,7 @@ def _test_add_pr_pure_parameters(ns: Mapping[str, Any]) -> None:
 
 def _test_build_kij_matrix(ns: Mapping[str, Any]) -> None:
     build_kij_matrix = _callable(ns, "build_kij_matrix")
-    toy_interactions = pd.DataFrame({"component_1": ["A"], "component_2": ["B"], "k12": [0.03]})
+    toy_interactions = pd.DataFrame({"component_1": ["A"], "component_2": ["B"], "delta": [0.03]})
     kij = build_kij_matrix(["A", "B"], toy_interactions)
     _require(isinstance(kij, pd.DataFrame), "The k_ij result should be a pandas DataFrame.")
     _require(list(kij.index) == ["A", "B"], "The k_ij matrix index is not arranged as expected.")
