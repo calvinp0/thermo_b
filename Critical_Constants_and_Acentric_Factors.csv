@@ -1,4 +1,4 @@
-Element,Tc_K,Pc_MPa,Vc_cm3_mol,w
+Component,Tc_K,Pc_MPa,Vc_cm3_mol,w
 Argon,150.8,4.87,74.9,0.001
 Bromine,588.0,10.3,127.2,0.108
 Chlorine,416.9,7.9799999999999995,123.8,0.09
